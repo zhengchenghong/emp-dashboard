@@ -1,0 +1,39 @@
+[
+  {
+    "label": "Preschool",
+    "value": "4"
+  },
+  {
+    "label": "Lower Primary (K-2)",
+    "value": "5"
+  },
+  {
+    "label": "Upper Primary (3-5)",
+    "value": "6"
+  },
+  {
+    "label": "Middle School",
+    "value": "7"
+  },
+  {
+    "label": "High School",
+    "ages": [9, 10, 11, 12],
+    "value": "9-12"
+  },
+  {
+    "label": "Community College",
+    "value": "9"
+  },
+  {
+    "label": "College",
+    "value": "10"
+  },
+  {
+    "label": "Graduate",
+    "value": "11"
+  },
+  {
+    "label": "Career",
+    "value": "12"
+  }
+]

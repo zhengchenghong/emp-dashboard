@@ -1,0 +1,2348 @@
+fragment Desc_desc on Desc {
+  title
+  short
+  long
+}
+
+fragment Category_category on Category {
+  grades
+  subjects
+  orgs {
+    ...Org_org
+  }
+  lang
+  accessModes
+  standards
+}
+
+fragment DocState_docState on DocState {
+  major
+  minor
+  state
+}
+
+fragment Config_config on Config {
+  packagingCycleTime
+  googleIngestCycleTime
+  canvasIngestCycleTime
+  schoologyIngestCycleTime
+  refreshRate
+}
+
+fragment Asset_asset on Asset {
+  type
+  url
+  name
+  iconUrl
+  mimeType
+  altText
+}
+
+fragment Parent_parent on Parent {
+  schemaType
+  _id
+}
+
+fragment Topology_topology on Topology {
+  state
+  station
+  district
+  school
+  class
+}
+
+fragment MultimediaAsset_multimediaAsset on MultimediaAsset {
+  uId
+  altText
+  baseUrl
+  fileDir
+  fileName
+  thumbnail
+  type
+  mimeType
+  status
+  data
+  title
+  category {
+    ...Category_category
+  }
+}
+
+fragment MultimediaAsset_multimediaAsset1 on MultimediaAsset {
+  uId
+  altText
+  baseUrl
+  fileDir
+  fileName
+  thumbnail
+  type
+  mimeType
+  status
+  data
+  title
+}
+
+fragment Schedule_schedule on Schedule {
+  status
+  startAt
+  endAt
+}
+
+fragment Lifecycle_lifecycle on Lifecycle {
+  archiveOn
+  deleteOn
+  publishedOn
+  unpublishedOn
+}
+
+fragment LoginInfo_loginInfo on LoginInfo {
+  EULAsignedAt
+  lastSeenAt
+  count
+}
+
+fragment ActionTimestamp_actionTimestamp on ActionTimestamp {
+  date
+  action
+}
+
+fragment Org_org on Org {
+  level1
+  level2
+  level3
+}
+
+fragment Grouping_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  body
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  config {
+    ...Config_config
+  }
+  tagList
+  categories {
+    ...Category_category
+  }
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  rank
+  source
+  refCount
+  authorIdList
+  assigneeIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  multimediaAssets {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  schoolTermId
+  groupId
+  groupIdList
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  contact
+  data
+  createdAt
+  updatedAt
+  type
+  destination
+  intRef {
+    _id
+    schemaType
+  }
+  transmission
+  response
+}
+
+fragment Station_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  childrenIdList
+  desc {
+    ...Desc_desc
+  }
+  config {
+    ...Config_config
+  }
+  avatar {
+    ...MultimediaAsset_multimediaAsset1
+  }
+  topology {
+    state
+    station
+  }
+  groupId
+  createdAt
+  updatedAt
+  transmission
+}
+
+fragment District_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  avatar {
+    ...MultimediaAsset_multimediaAsset1
+  }
+  topology {
+    state
+    station
+    district
+  }
+  groupId
+  createdAt
+  updatedAt
+  data
+}
+
+fragment School_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  archivedChildrenIdList
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  avatar {
+    ...MultimediaAsset_multimediaAsset1
+  }
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  topology {
+    state
+    station
+    district
+    school
+  }
+  groupId
+  createdAt
+  updatedAt
+}
+
+fragment SchoolTerm_grouping on Grouping {
+  _id
+  schemaType
+  name
+  schedule {
+    ...Schedule_schedule
+  }
+
+  topology {
+    state
+    station
+    district
+    school
+  }
+  version
+  createdAt
+  updatedAt
+}
+
+fragment Class_grouping on Grouping {
+  _id
+  _extId
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  schoolTermId
+  parentId
+  childrenIdList
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  rank
+  source
+  authorIdList
+  assigneeIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  groupId
+  categories {
+    ...Category_category
+  }
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  contact
+  createdAt
+  updatedAt
+}
+
+fragment ArchiveClass_grouping on Grouping {
+  _id
+  _extId
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  schoolTermId
+  parentId
+  childrenIdList
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  rank
+  source
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  groupId
+  categories {
+    ...Category_category
+  }
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  contact
+  createdAt
+  updatedAt
+}
+
+fragment User_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  groupId
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  intRef {
+    _id
+    schemaType
+  }
+  contact
+  createdAt
+  updatedAt
+  destination
+  data
+}
+
+fragment SysAdmin_Grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  contact
+  createdAt
+  updatedAt
+  data
+}
+
+fragment Admin_Grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  contact
+  createdAt
+  updatedAt
+  data
+}
+
+fragment Educator_Grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  contact
+  createdAt
+  updatedAt
+}
+
+fragment Student_Grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  data
+  topology {
+    ...Topology_topology
+  }
+  groupId
+  loginInfo {
+    ...LoginInfo_loginInfo
+  }
+  contact
+  createdAt
+  updatedAt
+  destination
+  intRef {
+    _id
+    schemaType
+  }
+}
+
+fragment Material_grouping on Grouping {
+  _id
+  _extId
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  childrenIdList
+  body
+  parentIdList
+  desc {
+    ...Desc_desc
+  }
+  tagList
+  categories {
+    ...Category_category
+  }
+  rank
+  authorIdList
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  multimediaAssets {
+    ...MultimediaAsset_multimediaAsset
+  }
+  topology {
+    ...Topology_topology
+  }
+  groupId
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  createdAt
+  updatedAt
+  data
+  intRef {
+    _id
+    schemaType
+  }
+}
+
+fragment Gallery_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  tagList
+  createdAt
+  updatedAt
+}
+
+fragment Library_grouping on Grouping {
+  _id
+  schemaType
+  name
+  version
+  trackingAuthorName
+  desc {
+    ...Desc_desc
+  }
+  tagList
+  type
+  data
+  topology {
+    ...Topology_topology
+  }
+  intRef {
+    _id
+    schemaType
+  }
+  parentId
+  parentIdList
+  multimediaAssets {
+    ...MultimediaAsset_multimediaAsset
+  }
+  categories {
+    ...Category_category
+  }
+  createdAt
+}
+
+fragment Tutorial_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  body
+  desc {
+    ...Desc_desc
+  }
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  multimediaAssets {
+    ...MultimediaAsset_multimediaAsset
+  }
+  type
+  createdAt
+  updatedAt
+}
+
+fragment Package_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  groupId
+  multimediaAssets {
+    ...MultimediaAsset_multimediaAsset
+  }
+  desc {
+    ...Desc_desc
+  }
+  createdAt
+  updatedAt
+  response
+}
+
+fragment SysMessage_grouping on Grouping {
+  _id
+  schemaType
+  name
+  status
+  version
+  trackingAuthorName
+  desc {
+    ...Desc_desc
+  }
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  schedule {
+    ...Schedule_schedule
+  }
+  lifecycle {
+    ...Lifecycle_lifecycle
+  }
+  createdAt
+  updatedAt
+  rank
+  data
+}
+
+fragment Device_grouping on Grouping {
+  _id
+  schemaType
+  name
+  type
+  desc {
+    ...Desc_desc
+  }
+  parentId
+  childrenIdList
+  groupIdList
+  status
+  topology {
+    ...Topology_topology
+  }
+  createdAt
+  updatedAt
+  version
+}
+
+fragment Tag_grouping on Grouping {
+  _id
+  schemaType
+  name
+  refCount
+  createdAt
+  updatedAt
+}
+
+fragment BroadCastApp_grouping on Grouping {
+  _id
+  name
+  schemaType
+  desc {
+    ...Desc_desc
+  }
+}
+
+fragment BulkFiles_grouping on Grouping {
+  _id
+  schemaType
+  type
+  name
+  status
+  version
+  trackingAuthorName
+  parentId
+  avatar {
+    ...MultimediaAsset_multimediaAsset
+  }
+  desc {
+    ...Desc_desc
+  }
+  createdAt
+  updatedAt
+}
+
+fragment MovedGrouping_MovedGrouping on MovedGrouping {
+  doc {
+    ...Grouping_grouping
+  }
+  oldParent {
+    ...Grouping_grouping
+  }
+  newParent {
+    ...Grouping_grouping
+  }
+}
+
+query StationGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: { state: $state }
+  ) {
+    ...Station_grouping
+  }
+}
+
+query DistrictGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $stationId: String
+  $districtId: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: { state: $state, station: $stationId, district: $districtId }
+  ) {
+    ...District_grouping
+  }
+}
+
+query SchoolGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $stationId: String
+  $districtId: String
+  $schoolId: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: {
+      state: $state
+      station: $stationId
+      district: $districtId
+      school: $schoolId
+    }
+  ) {
+    ...School_grouping
+  }
+}
+
+query SchoolTermGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $nameRegExp: String
+  $offset: Int
+  $limit: Int
+  $sortBy: String
+  $orderType: String
+  $stationId: String
+  $districtId: String
+  $schoolId: String
+  $status: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    status: $status
+    sortBy: $sortBy
+    orderType: $orderType
+    topology: { station: $stationId, district: $districtId, school: $schoolId }
+  ) {
+    ...SchoolTerm_grouping
+  }
+}
+
+query ClassGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $schoolId: String
+  $stationId: String
+  $districtId: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: {
+      state: $state
+      station: $stationId
+      district: $districtId
+      school: $schoolId
+    }
+  ) {
+    ...Class_grouping
+  }
+}
+
+query AchiveClassGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $schoolId: String
+  $stationId: String
+  $districtId: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: {
+      state: $state
+      station: $stationId
+      district: $districtId
+      school: $schoolId
+    }
+  ) {
+    ...ArchiveClass_grouping
+  }
+}
+
+query MaterialGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $nameRegExp: String
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $stationId: ID
+  $districtId: ID
+  $schoolId: ID
+  $classId: ID
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    nameRegExp: $nameRegExp
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: {
+      state: $state
+      station: $stationId
+      district: $districtId
+      school: $schoolId
+      class: $classId
+    }
+  ) {
+    ...Material_grouping
+  }
+}
+
+query GalleryGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $tagList: [String]
+  $status: String
+  $sortBy: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    nameRegExp: $nameRegExp
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    tagList: $tagList
+    status: $status
+    sortBy: $sortBy
+    topology: { state: $state }
+  ) {
+    ...Gallery_grouping
+  }
+}
+
+query Grouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $transmission: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    transmission: $transmission
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+query UserGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+  ) {
+    ...User_grouping
+  }
+}
+
+query SysAdminGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $sortBy: String
+  $orderType: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    sortBy: $sortBy
+    orderType: $orderType
+  ) {
+    ...SysAdmin_Grouping
+  }
+}
+
+query AdminGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $sortBy: String
+  $orderType: String
+  $topology: JSONObject
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    sortBy: $sortBy
+    orderType: $orderType
+    topology: $topology
+  ) {
+    ...Admin_Grouping
+  }
+}
+
+query EducatorGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $sortBy: String
+  $orderType: String
+  $topology: JSONObject
+  $classId: ID
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    sortBy: $sortBy
+    orderType: $orderType
+    topology: $topology
+    classId: $classId
+  ) {
+    ...Educator_Grouping
+  }
+}
+
+query StudentGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $sortBy: String
+  $orderType: String
+  $topology: JSONObject
+  $intRef: JSONObject
+  $classId: ID
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    sortBy: $sortBy
+    orderType: $orderType
+    topology: $topology
+    classId: $classId
+    intRef: $intRef
+  ) {
+    ...Student_Grouping
+  }
+}
+
+query LibraryGrouping(
+  $id: ID
+  $schemaType: String!
+  $type: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $tagList: [String]
+  $topology: JSONObject
+  $status: String
+  $sortBy: String
+  $nameRegExp: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    type: $type
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    tagList: $tagList
+    sortBy: $sortBy
+    nameRegExp: $nameRegExp
+    topology: $topology
+  ) {
+    ...Library_grouping
+  }
+}
+
+query TutorialGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $type: String
+  $nameRegExp: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    type: $type
+    sortBy: $sortBy
+    nameRegExp: $nameRegExp
+    topology: { state: $state }
+  ) {
+    ...Tutorial_grouping
+  }
+}
+
+query PackageGrouping(
+  $id: ID
+  $schemaType: String!
+  $nameRegExp: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $orderType: String
+  $type: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    orderType: $orderType
+    topology: { state: $state }
+    type: $type
+  ) {
+    ...Package_grouping
+  }
+}
+
+query SDashPackageGrouping($schemaType: String!, $parentId: ID, $type: String) {
+  sigGrouping(schemaType: $schemaType, parentId: $parentId, type: $type) {
+    _id
+    schemaType
+    name
+    status
+    version
+    trackingAuthorName
+    parentId
+    groupId
+    multimediaAssets {
+      ...MultimediaAsset_multimediaAsset
+    }
+    desc {
+      ...Desc_desc
+    }
+    createdAt
+    updatedAt
+    type
+  }
+}
+
+query SysMessageGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: { state: $state }
+  ) {
+    ...SysMessage_grouping
+  }
+}
+
+query DeviceGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $nameRegExp: String
+  $topology: JSONObject
+  $status: String
+  $sortBy: String
+  $type: String
+  $groupIdList: [Int]
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    nameRegExp: $nameRegExp
+    limit: $limit
+    parentId: $parentId
+    topology: $topology
+    status: $status
+    sortBy: $sortBy
+    type: $type
+    groupIdList: $groupIdList
+  ) {
+    ...Device_grouping
+  }
+}
+
+query BulkFilesGrouping(
+  $id: ID
+  $schemaType: String!
+  $type: String
+  $name: String
+  $offset: Int
+  $limit: Int
+  $status: String
+  $sortBy: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    type: $type
+    name: $name
+    offset: $offset
+    limit: $limit
+    status: $status
+    sortBy: $sortBy
+  ) {
+    ...BulkFiles_grouping
+  }
+}
+
+query AnalyticsGrouping(
+  $id: ID
+  $schemaType: String!
+  $status: String
+  $nameRegExp: String
+  $offset: Int
+  $limit: Int
+  $classId: ID
+  $parentId: ID
+  $type: String
+  $topology: JSONObject
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    status: $status
+    topology: $topology
+    nameRegExp: $nameRegExp
+    offset: $offset
+    limit: $limit
+    classId: $classId
+    parentId: $parentId
+    type: $type
+  ) {
+    _id
+    name
+    parentId
+    refCount
+    childrenIdList
+    topology {
+      state
+      station
+      district
+      school
+      class
+    }
+    status
+    tagList
+    createdAt
+    updatedAt
+    loginInfo {
+      lastSeenAt
+    }
+    source
+    parentIdList
+  }
+}
+
+query TotalCount(
+  $schemaType: String!
+  $name: String
+  $nameRegExp: String
+  $parentId: ID
+  $parentIdList: [ID]
+  $topology: JSONObject
+  $status: String
+  $authorId: ID
+  $tagList: [String]
+  $classId: ID
+  $type: String
+  $groupIdList: [Int]
+  $transmission: String
+) {
+  totalCount(
+    schemaType: $schemaType
+    name: $name
+    nameRegExp: $nameRegExp
+    parentId: $parentId
+    parentIdList: $parentIdList
+    topology: $topology
+    status: $status
+    authorId: $authorId
+    tagList: $tagList
+    classId: $classId
+    type: $type
+    groupIdList: $groupIdList
+    transmission: $transmission
+  )
+}
+
+query MaterialsCount(
+  $schemaType: String!
+  $type: String!
+  $topology: JSONObject!
+) {
+  materialsCount(schemaType: $schemaType, type: $type, topology: $topology)
+}
+
+query NameGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $parentId: ID
+  $authorId: ID
+  $state: String
+  $status: String
+  $sortBy: String
+  $transmission: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    parentId: $parentId
+    authorId: $authorId
+    status: $status
+    sortBy: $sortBy
+    topology: { state: $state }
+    transmission: $transmission
+  ) {
+    _id
+    _extId
+    name
+    schemaType
+    parentId
+    version
+    trackingAuthorName
+    desc {
+      title
+      short
+      long
+    }
+    topology {
+      state
+      station
+      school
+      class
+      district
+    }
+    childrenIdList
+    parentIdList
+    avatar {
+      ...MultimediaAsset_multimediaAsset
+    }
+    rank
+    status
+    tagList
+    data
+    createdAt
+    authorIdList
+    transmission
+  }
+}
+
+query GoogleAuthUrl {
+  googleAuthUrl
+}
+
+query canvasAuthUrl {
+  canvasAuthUrl
+}
+
+query TagGrouping(
+  $id: ID
+  $schemaType: String!
+  $name: String
+  $offset: Int
+  $limit: Int
+  $sortBy: String
+) {
+  grouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    offset: $offset
+    limit: $limit
+    sortBy: $sortBy
+  ) {
+    _id
+    name
+    refCount
+    createdAt
+    updatedAt
+  }
+}
+
+query BroadCastAppGrouping(
+  $schemaType: String!
+  $stationId: ID
+  $type: String
+) {
+  grouping(
+    schemaType: $schemaType
+    topology: { station: $stationId }
+    type: $type
+  ) {
+    ...BroadCastApp_grouping
+  }
+}
+
+query allStations {
+  allStations {
+    ...Station_grouping
+  }
+}
+
+mutation UpsertTracking(
+  $schemaType: String!
+  $name: String
+  $parent: ParentInput
+  $data: JSONObject
+) {
+  upsertTracking(
+    schemaType: $schemaType
+    name: $name
+    parent: $parent
+    data: $data
+  ) {
+    _id
+    schemaType
+    name
+    parent {
+      ...Parent_parent
+    }
+    data
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateGrouping(
+  $schemaType: String!
+  $name: String!
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $schoolTermId: ID
+  $childrenIdList: [ID]
+  $parentIdList: [ID]
+  $data: JSONObject
+  $config: ConfigInput
+  $desc: DescInput
+  $avatar: MultimediaAssetInput
+  $topology: TopologyInput
+  $status: String
+  $authorIdList: [String]
+  $groupId: Int
+  $groupIdList: [Int]
+  $rank: Float
+  $type: String
+  $contact: JSONObject
+  $tagList: [String]
+  $destination: JSONObject
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $categories: CategoryInput
+  $intRef: IntRefInput
+  $shared: Boolean
+  $transmission: String
+) {
+  createGrouping(
+    schemaType: $schemaType
+    name: $name
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    schoolTermId: $schoolTermId
+    topology: $topology
+    data: $data
+    config: $config
+    childrenIdList: $childrenIdList
+    parentIdList: $parentIdList
+    authorIdList: $authorIdList
+    groupId: $groupId
+    groupIdList: $groupIdList
+    avatar: $avatar
+    status: $status
+    desc: $desc
+    rank: $rank
+    type: $type
+    contact: $contact
+    tagList: $tagList
+    destination: $destination
+    schedule: $schedule
+    lifecycle: $lifecycle
+    categories: $categories
+    intRef: $intRef
+    shared: $shared
+    transmission: $transmission
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation CreateRefGrouping(
+  $id: ID!
+  $schemaType: String!
+  $userName: String!
+  $userType: String!
+) {
+  createRefGrouping(
+    _id: $id
+    schemaType: $schemaType
+    userName: $userName
+    userType: $userType
+  ) {
+    ...Material_grouping
+  }
+}
+
+mutation CreateBulkUsersGrouping(
+  $parentDocId: String
+  $type: String
+  $assetUrl: String
+  $classId: String
+) {
+  createBulkUsers(
+    parentDocId: $parentDocId
+    type: $type
+    assetUrl: $assetUrl
+    classId: $classId
+  )
+}
+
+mutation CopyAssetS3(
+  $sourceUrl: String!
+  $destBucket: String!
+  $destKey: String!
+) {
+  copyAssetS3(sourceUrl: $sourceUrl, destBucket: $destBucket, destKey: $destKey)
+}
+
+mutation CopyMMA(
+  $sourceSchemaType: String!
+  $sourceDocId: ID!
+  $sourceUId: ID!
+  $destSchemaType: String!
+  $destDocId: ID!
+) {
+  copyMMA(
+    sourceSchemaType: $sourceSchemaType
+    sourceDocId: $sourceDocId
+    sourceUId: $sourceUId
+    destSchemaType: $destSchemaType
+    destDocId: $destDocId
+  )
+}
+
+mutation DeleteAssetS3Grouping($bucket: String!, $key: String!) {
+  deleteAssetS3(bucket: $bucket, key: $key)
+}
+
+mutation PackageStation($parentId: String) {
+  packageStation(parentId: $parentId) {
+    _id
+  }
+}
+
+mutation DeleteDocument($schemaType: String!, $id: ID!) {
+  deleteDocument(schemaType: $schemaType, _id: $id)
+}
+
+mutation UpdateGrouping(
+  $id: ID!
+  $schemaType: String!
+  $name: String
+  $status: String
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $schoolTermId: ID
+  $childrenIdList: [ID]
+  $body: String
+  $desc: DescInput
+  $tagList: [String]
+  $categories: CategoryInput
+  $rank: Float
+  $source: JSONObject
+  $groupIdList: [Int]
+  $authorIdList: [String]
+  $assigneeIdList: [String]
+  $avatar: MultimediaAssetInput
+  $multimediaAssets: [MultimediaAssetInput]
+  $topology: TopologyInput
+  $contact: JSONObject
+  $data: JSONObject
+  $loginInfo: LoginInfoInput
+  $config: ConfigInput
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $createdAt: String
+  $updatedAt: String
+  $parentIdList: [ID]
+  $destination: JSONObject
+  $intRef: IntRefInput
+  $transmission: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    status: $status
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    schoolTermId: $schoolTermId
+    parentIdList: $parentIdList
+    childrenIdList: $childrenIdList
+    body: $body
+    desc: $desc
+    tagList: $tagList
+    categories: $categories
+    rank: $rank
+    source: $source
+    groupIdList: $groupIdList
+    authorIdList: $authorIdList
+    assigneeIdList: $assigneeIdList
+    avatar: $avatar
+    multimediaAssets: $multimediaAssets
+    topology: $topology
+    contact: $contact
+    data: $data
+    loginInfo: $loginInfo
+    config: $config
+    schedule: $schedule
+    lifecycle: $lifecycle
+    createdAt: $createdAt
+    updatedAt: $updatedAt
+    destination: $destination
+    intRef: $intRef
+    transmission: $transmission
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingStation(
+  $id: ID!
+  $schemaType: String!
+  $name: String
+  $status: String
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $childrenIdList: [ID]
+  $body: String
+  $desc: DescInput
+  $tagList: [String]
+  $categories: CategoryInput
+  $rank: Float
+  $source: JSONObject
+  $groupIdList: [Int]
+  $authorIdList: [String]
+  $assigneeIdList: [String]
+  $avatar: MultimediaAssetInput
+  $multimediaAssets: [MultimediaAssetInput]
+  $topology: TopologyInput
+  $contact: JSONObject
+  $data: JSONObject
+  $loginInfo: LoginInfoInput
+  $config: ConfigInput
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $createdAt: String
+  $updatedAt: String
+  $parentIdList: [ID]
+  $destination: JSONObject
+  $intRef: IntRefInput
+  $transmission: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    status: $status
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    parentIdList: $parentIdList
+    childrenIdList: $childrenIdList
+    body: $body
+    desc: $desc
+    tagList: $tagList
+    categories: $categories
+    rank: $rank
+    source: $source
+    groupIdList: $groupIdList
+    authorIdList: $authorIdList
+    assigneeIdList: $assigneeIdList
+    avatar: $avatar
+    multimediaAssets: $multimediaAssets
+    topology: $topology
+    contact: $contact
+    data: $data
+    loginInfo: $loginInfo
+    config: $config
+    schedule: $schedule
+    lifecycle: $lifecycle
+    createdAt: $createdAt
+    updatedAt: $updatedAt
+    destination: $destination
+    intRef: $intRef
+    transmission: $transmission
+  ) {
+    ...Station_grouping
+  }
+}
+
+mutation UpdateGroupingDistrict(
+  $id: ID!
+  $schemaType: String!
+  $name: String
+  $status: String
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $childrenIdList: [ID]
+  $body: String
+  $desc: DescInput
+  $tagList: [String]
+  $categories: CategoryInput
+  $rank: Float
+  $source: JSONObject
+  $groupIdList: [Int]
+  $authorIdList: [String]
+  $assigneeIdList: [String]
+  $avatar: MultimediaAssetInput
+  $multimediaAssets: [MultimediaAssetInput]
+  $topology: TopologyInput
+  $contact: JSONObject
+  $data: JSONObject
+  $loginInfo: LoginInfoInput
+  $config: ConfigInput
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $createdAt: String
+  $updatedAt: String
+  $parentIdList: [ID]
+  $destination: JSONObject
+  $intRef: IntRefInput
+  $transmission: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    status: $status
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    parentIdList: $parentIdList
+    childrenIdList: $childrenIdList
+    body: $body
+    desc: $desc
+    tagList: $tagList
+    categories: $categories
+    rank: $rank
+    source: $source
+    groupIdList: $groupIdList
+    authorIdList: $authorIdList
+    assigneeIdList: $assigneeIdList
+    avatar: $avatar
+    multimediaAssets: $multimediaAssets
+    topology: $topology
+    contact: $contact
+    data: $data
+    loginInfo: $loginInfo
+    config: $config
+    schedule: $schedule
+    lifecycle: $lifecycle
+    createdAt: $createdAt
+    updatedAt: $updatedAt
+    destination: $destination
+    intRef: $intRef
+    transmission: $transmission
+  ) {
+    ...District_grouping
+  }
+}
+
+mutation UpdateGroupingSchool(
+  $id: ID!
+  $schemaType: String!
+  $name: String
+  $status: String
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $childrenIdList: [ID]
+  $body: String
+  $desc: DescInput
+  $tagList: [String]
+  $categories: CategoryInput
+  $rank: Float
+  $source: JSONObject
+  $groupIdList: [Int]
+  $authorIdList: [String]
+  $assigneeIdList: [String]
+  $avatar: MultimediaAssetInput
+  $multimediaAssets: [MultimediaAssetInput]
+  $topology: TopologyInput
+  $contact: JSONObject
+  $data: JSONObject
+  $loginInfo: LoginInfoInput
+  $config: ConfigInput
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $createdAt: String
+  $updatedAt: String
+  $parentIdList: [ID]
+  $destination: JSONObject
+  $intRef: IntRefInput
+  $transmission: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    status: $status
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    parentIdList: $parentIdList
+    childrenIdList: $childrenIdList
+    body: $body
+    desc: $desc
+    tagList: $tagList
+    categories: $categories
+    rank: $rank
+    source: $source
+    groupIdList: $groupIdList
+    authorIdList: $authorIdList
+    assigneeIdList: $assigneeIdList
+    avatar: $avatar
+    multimediaAssets: $multimediaAssets
+    topology: $topology
+    contact: $contact
+    data: $data
+    loginInfo: $loginInfo
+    config: $config
+    schedule: $schedule
+    lifecycle: $lifecycle
+    createdAt: $createdAt
+    updatedAt: $updatedAt
+    destination: $destination
+    intRef: $intRef
+    transmission: $transmission
+  ) {
+    ...School_grouping
+  }
+}
+
+mutation UpdateGroupingClass(
+  $id: ID!
+  $schemaType: String!
+  $name: String
+  $status: String
+  $version: Int!
+  $trackingAuthorName: String
+  $parentId: ID
+  $childrenIdList: [ID]
+  $body: String
+  $desc: DescInput
+  $schoolTermId: ID
+  $tagList: [String]
+  $categories: CategoryInput
+  $rank: Float
+  $source: JSONObject
+  $groupIdList: [Int]
+  $authorIdList: [String]
+  $assigneeIdList: [String]
+  $avatar: MultimediaAssetInput
+  $multimediaAssets: [MultimediaAssetInput]
+  $topology: TopologyInput
+  $contact: JSONObject
+  $data: JSONObject
+  $loginInfo: LoginInfoInput
+  $config: ConfigInput
+  $schedule: ScheduleInput
+  $lifecycle: LifecycleInput
+  $createdAt: String
+  $updatedAt: String
+  $parentIdList: [ID]
+  $destination: JSONObject
+  $intRef: IntRefInput
+  $transmission: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    name: $name
+    status: $status
+    version: $version
+    trackingAuthorName: $trackingAuthorName
+    parentId: $parentId
+    parentIdList: $parentIdList
+    childrenIdList: $childrenIdList
+    body: $body
+    desc: $desc
+    tagList: $tagList
+    categories: $categories
+    rank: $rank
+    source: $source
+    schoolTermId: $schoolTermId
+    groupIdList: $groupIdList
+    authorIdList: $authorIdList
+    assigneeIdList: $assigneeIdList
+    avatar: $avatar
+    multimediaAssets: $multimediaAssets
+    topology: $topology
+    contact: $contact
+    data: $data
+    loginInfo: $loginInfo
+    config: $config
+    schedule: $schedule
+    lifecycle: $lifecycle
+    createdAt: $createdAt
+    updatedAt: $updatedAt
+    destination: $destination
+    intRef: $intRef
+    transmission: $transmission
+  ) {
+    ...Class_grouping
+  }
+}
+
+mutation UpdateGroupingData(
+  $id: ID!
+  $collectionName: String!
+  $version: Int
+  $data: JSONObject
+  $parent: ID
+) {
+  updateGrouping(
+    _id: $id
+    collectionName: $collectionName
+    data: $data
+    parent: $parent
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation updateGroupingRename(
+  $id: ID!
+  $collectionName: String!
+  $version: Int
+  $name: String
+) {
+  updateGrouping(_id: $id, collectionName: $collectionName, name: $name) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingTopology(
+  $id: ID!
+  $collectionName: String!
+  $version: Int
+  $topology: TopologyInput
+  $parent: ID
+) {
+  updateGrouping(
+    _id: $id
+    collectionName: $collectionName
+    topology: $topology
+    parent: $parent
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingType(
+  $id: ID!
+  $collectionName: String!
+  $version: Int
+  $type: String!
+  $parent: ID
+) {
+  updateGrouping(
+    _id: $id
+    collectionName: $collectionName
+    type: $type
+    parent: $parent
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingState(
+  $id: ID!
+  $collectionName: String!
+  $version: Int
+  $state: String
+) {
+  updateGrouping(_id: $id, collectionName: $collectionName, state: $state) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingDesc(
+  $id: ID!
+  $schemaType: String!
+  $version: Int!
+  $title: String
+  $short: String
+  $long: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    version: $version
+    desc: { title: $title, short: $short, long: $long }
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingAssetURLs(
+  $id: ID!
+  $version: Int
+  $collectionName: String!
+  $data: [JSONObject]
+) {
+  updateGrouping(
+    _id: $id
+    collectionName: $collectionName
+    assetURLs: { internal: $data }
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateGroupingAvatarUrl(
+  $id: ID!
+  $version: Int!
+  $schemaType: String!
+  $url: String
+) {
+  updateGrouping(
+    _id: $id
+    schemaType: $schemaType
+    version: $version
+    avatar: { url: $url }
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation UpdateMultiAssetStatus(
+  $schemaType: String!
+  $_id: ID!
+  $uid: ID
+  $status: String!
+) {
+  updateGrouping(
+    schemaType: $schemaType
+    _id: $_id
+    uid: $uid
+    status: $status
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation IngestGoogle($userId: ID!) {
+  ingestGoogle(userId: $userId)
+}
+
+mutation IngestCanvas($userId: ID!) {
+  ingestCanvas(userId: $userId)
+}
+
+mutation IngestSchoology($userId: ID!) {
+  ingestSchoology(userId: $userId)
+}
+
+mutation ArchiveClass($id: ID!) {
+  archiveClass(_id: $id)
+}
+
+mutation UpsertMMA(
+  $docId: ID!
+  $schemaType: String!
+  $mma: MultimediaAssetInput!
+) {
+  upsertMMA(docId: $docId, mma: $mma, schemaType: $schemaType) {
+    ...Grouping_grouping
+  }
+}
+
+mutation DeleteMMA($docId: ID!, $schemaType: String!, $uId: String!) {
+  deleteMMA(docId: $docId, schemaType: $schemaType, uId: $uId) {
+    ...Grouping_grouping
+  }
+}
+
+mutation CopyResourceToMaterial($classId: ID!, $resourceId: ID!) {
+  copyResourceToMaterial(classId: $classId, resourceId: $resourceId)
+}
+
+mutation CopyResource($classId: ID!, $resourceId: ID!) {
+  copyResource(classId: $classId, resourceId: $resourceId)
+}
+
+mutation CopySharedLesson($classId: ID!, $resourceId: ID!) {
+  copySharedLesson(classId: $classId, resourceId: $resourceId)
+}
+
+mutation UpdateConfigApp($stationId: ID!, $status: Boolean) {
+  configApp(stationId: $stationId, status: $status)
+}
+
+mutation RestoreArchive($_id: ID!, $schemaType: String!, $name: String) {
+  restoreArchive(_id: $_id, schemaType: $schemaType, name: $name)
+}
+
+mutation MoveToNewParent(
+  $parentId: ID!
+  $parentSchemaType: String!
+  $newParentId: ID!
+  $newParentSchemaType: String!
+  $_id: ID!
+) {
+  movetoNewParent(
+    parentId: $parentId
+    parentSchemaType: $parentSchemaType
+    newParentId: $newParentId
+    newParentSchemaType: $newParentSchemaType
+    _id: $_id
+  ) {
+    ...MovedGrouping_MovedGrouping
+  }
+}
+
+mutation UpdateGroupingList(
+  $id: ID!
+  $schemaType: String!
+  $item: String!
+  $fieldName: String!
+  $type: String!
+  $trackingAuthorName: String
+) {
+  updateGroupingList(
+    _id: $id
+    schemaType: $schemaType
+    item: $item
+    fieldName: $fieldName
+    type: $type
+    trackingAuthorName: $trackingAuthorName
+  ) {
+    ...Grouping_grouping
+  }
+}
+
+mutation GetFolderSize($bucket: String!, $key: String!) {
+  getFolderSize(bucket: $bucket, key: $key)
+}
+
+subscription GroupingAdd {
+  groupingAdd {
+    ...Grouping_grouping
+  }
+}
+
+subscription DocumentDelete {
+  documentDelete {
+    _id
+    schemaType
+  }
+}
+
+subscription GroupingUpdate {
+  groupingUpdate {
+    ...Grouping_grouping
+  }
+}
+
+subscription OnMoveToNewParent {
+  movetoNewParent {
+    ...MovedGrouping_MovedGrouping
+  }
+}
+
+subscription OnUpsertMMA {
+  upsertMMA {
+    ...Grouping_grouping
+  }
+}
+
+subscription OnDeleteMMA {
+  deleteMMA {
+    ...Grouping_grouping
+  }
+}

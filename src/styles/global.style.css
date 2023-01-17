@@ -1,0 +1,45 @@
+body {
+  overflow-x: hidden !important;
+  margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px white;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #607d8b;
+  border-radius: 10px;
+}
+
+/* JSON Editor style */
+.jsoneditor {
+  height: calc(100vh - 260px);
+}
+
+.Pager-pager-131 {
+  margin-top: 140px;
+}
+
+.common-pbs {
+  height: 6rem;
+  border-radius: 5px;
+}
+
+.gallery-pagination .MuiPaginationItem-page.Mui-selected {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.gallery-pagination .MuiPaginationItem-sizeSmall {
+  color: white;
+}

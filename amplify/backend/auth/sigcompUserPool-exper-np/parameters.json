@@ -1,0 +1,6 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "sigcompUserPool-exper-np",
+  "serviceType": "imported",
+  "region": "us-east-2"
+}

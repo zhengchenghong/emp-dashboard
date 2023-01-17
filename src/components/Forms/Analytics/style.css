@@ -1,0 +1,33 @@
+.MuiDataGrid-footerContainer {
+  display: none !important;
+}
+
+.sort-item {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.sort-item-badge {
+  border-radius: 50%;
+  visibility: hidden;
+  opacity: 0.3;
+  height: 20px;
+  margin-bottom: -3px;
+  margin-left: 3px;
+}
+
+.sort-item-badge:hover {
+  background: lightgrey;
+}
+
+.sort-item-badge.active {
+  visibility: visible;
+  opacity: 0.6;
+}
+
+.sort-item:hover .sort-item-badge {
+  visibility: visible;
+}

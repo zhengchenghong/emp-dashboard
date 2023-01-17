@@ -1,0 +1,93 @@
+image: node:14.16.0
+options:
+  size: 2x
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - NODE_OPTIONS=--max_old_space_size=4096
+            - yarn --ignore-engines install
+            - CI=false yarn build
+            - sed -i "s/$/-$(date +'%Y-%m-%d.%H:%M')-$BITBUCKET_BRANCH/" version.txt && mv version.txt ./build/version.txt
+            - apt-get update && apt-get install -y awscli
+            - aws s3 --region "us-east-2" rm s3://prod-dashboard.emp-sig.com
+            - aws s3 --region "us-east-2" sync ./build s3://prod-dashboard.emp-sig.com --exclude "node_modules/*"
+    dev:
+      - step:
+          script:
+            #- apt-get update && apt-get install -y awscli
+            - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" #install AWS CLI v2 (required for ssm command below)
+            - unzip awscliv2.zip
+            - ./aws/install
+            - aws --version
+            - '(aws ssm get-parameter --name "/emp-dashboard/dev/config" --output text --query "Parameter.Value" --region us-east-2 ) > ./src/Config.js'
+            - node -v
+            - NODE_OPTIONS=--max_old_space_size=4096
+            - sed -i "s/$/-$(date +'%Y-%m-%d.%H:%M')-$BITBUCKET_BRANCH/" version.txt && mv version.txt ./src/utils/version.txt
+            - yarn --ignore-engines install
+            - CI=false yarn build
+            - aws s3 --region "us-east-2" rm s3://dashboard-dev.sigcomp.com
+            - aws s3 --region "us-east-2" sync ./build s3://dashboard-dev.sigcomp.com
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id E1LXZJ1CD9Z7F9 --paths "/*"
+    staging:
+      - step:
+          script:
+            - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" #install AWS CLI v2 (required for ssm command below)
+            - unzip awscliv2.zip
+            - ./aws/install
+            - aws --version
+            - export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID
+            - export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY
+            - '(aws ssm get-parameter --name "/emp-dashboard/staging/config" --output text --query "Parameter.Value" --region us-east-2 ) > ./src/Config.js'
+            - node -v
+            - NODE_OPTIONS=--max_old_space_size=4096
+            - sed -i "s/$/-$(date +'%Y-%m-%d.%H:%M')-$BITBUCKET_BRANCH/" version.txt && mv version.txt ./src/utils/version.txt
+            - yarn --ignore-engines install
+            - CI=false yarn build
+            - aws s3 --region "us-east-2" rm s3://dashboard-staging.pmep.org
+            - aws s3 --region "us-east-2" sync ./build s3://dashboard-staging.pmep.org
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id E2FXCIOGE23QT9 --paths "/*"
+
+    sig-dev:
+      - step:
+          script:
+            - NODE_OPTIONS=--max_old_space_size=4096
+            - yarn --ignore-engines install
+            - CI=false yarn build
+            - sed -i "s/$/-$(date +'%Y-%m-%d.%H:%M')-$BITBUCKET_BRANCH/" version.txt && mv version.txt ./src/utils/version.txt
+            - apt-get update && apt-get install -y awscli
+            - aws s3 --region "us-east-2" rm s3://dev-dashboard.sigcomp.com
+            - aws s3 --region "us-east-2" sync ./build s3://dev-dashboard.sigcomp.com
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id E3N2IJUCZYXTC1 --paths "/*"
+    # dev-rebuild:
+    #   - step:
+    #       script:
+    #         - NODE_OPTIONS=--max_old_space_size=4096
+    #         - yarn --ignore-engines install
+    #         - CI=false yarn build
+    #         - apt-get update && apt-get install -y awscli
+    #         - aws s3 --region "us-east-2" rm s3://dashboard-dev.sigcomp.com
+    #         - aws s3 --region "us-east-2" sync ./build s3://dashboard-dev.sigcomp.com
+    #         - aws configure set preview.cloudfront true
+    #         - aws cloudfront create-invalidation --distribution-id E1LXZJ1CD9Z7F9 --paths "/*"
+    test:
+      - step:
+          script:
+            - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" #install AWS CLI v2 (required for ssm command below)
+            - unzip awscliv2.zip
+            - ./aws/install
+            - aws --version
+            - '(aws ssm get-parameter --name "/emp-dashboard/test/config" --output text --query "Parameter.Value" --region us-east-2 ) > ./src/Config.js'
+            - NODE_OPTIONS=--max_old_space_size=4096
+            - sed -i "s/$/-$(date +'%Y-%m-%d.%H:%M')-$BITBUCKET_BRANCH/" version.txt && mv version.txt ./src/utils/version.txt
+            - yarn --ignore-engines install
+            - CI=false yarn build
+            - apt-get update && apt-get install -y awscli
+            - aws s3 --region "us-east-2" rm s3://dashboard-test.sigcomp.com
+            - aws s3 --region "us-east-2" sync ./build s3://dashboard-test.sigcomp.com
+            - aws configure set preview.cloudfront true
+            - aws cloudfront create-invalidation --distribution-id EMAHZYUOFRPGO --paths "/*"

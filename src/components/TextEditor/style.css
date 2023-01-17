@@ -1,0 +1,41 @@
+.rdw-option-wrapper {
+  /* margin: 0 !important; */
+  /* padding: 0px !important; */
+  /* min-width: 18px !important; */
+}
+.rdw-option-wrapper img {
+  /* width: 10px !important; */
+}
+.rdw-editor-toolbar {
+  font-size: 13px !important;
+}
+.rdw-block-dropdown {
+  width: 60px !important;
+  height: 20px !important;
+}
+.rdw-fontsize-dropdown {
+  min-width: 35px !important;
+  height: 20px !important;
+}
+.rdw-fontfamily-dropdown {
+  width: 55px !important;
+  height: 20px !important;
+}
+
+.DraftEditor-editorContainer,
+.DraftEditor-root,
+.public-DraftEditor-content {
+  height: initial !important;
+}
+.rdw-dropdown-selectedtext {
+  padding: 0 !important;
+}
+.rdw-dropdown-carettoopen {
+  right: 0 !important;
+}
+.rdw-dropdown-carettoopen {
+  margin-left: 15px !important;
+}
+.tox-tinymce:focus {
+  border-color: #40a9ff !important;
+}
